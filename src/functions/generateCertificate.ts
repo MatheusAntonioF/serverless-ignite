@@ -40,7 +40,7 @@ export const handler: APIGatewayProxyHandler = async event => {
     })
     .promise();
 
-  const userAlreadyExists = !response.Items[0];
+  const userAlreadyExists = response.Items[0];
 
   if (!userAlreadyExists) {
     await document
@@ -104,7 +104,7 @@ export const handler: APIGatewayProxyHandler = async event => {
   return {
     statusCode: 201,
     body: JSON.stringify({
-      message: 'Certificate gerado com sucesso!',
+      message: 'Certificado gerado com sucesso!',
       url: `https://certificate-serverless-ignite-bucket.s3.amazonaws.com/${id}.pdf`,
     }),
   };
